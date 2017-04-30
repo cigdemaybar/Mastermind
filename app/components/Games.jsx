@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, browserHistory } from 'react-router'
+import { Router, Link, browserHistory } from 'react-router'
 import { inputGuess } from '../reducers/guess'
 import { isValidGuess, response } from '../../helperfunctions'
 
@@ -11,17 +11,22 @@ class Games extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
-      guesses: [{value: 'cengiz', response: 'lala'}, {value: 'erman', response: 'saltbae'}],
+      guesses: [{value: '', response: ''}],
       input: '',
-      value: '',
-      response: ''
+      currentIndex: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(e) {
-    this.setState({ input: e.target.value })
+    var guesses = this.state.guesses
+    guesses[this.state.currentIndex].value = e.target.value
+    this.setState({
+      input: e.target.value,
+      guesses: guesses
+    }
+    )
   }
 
   handleSubmit(e) {
@@ -30,23 +35,29 @@ class Games extends React.Component {
     if (isValid[0]) {
       var responseMessage =response(this.state.input, this.props.game.secret)
       var guesses = this.state.guesses
-      guesses.push({
-        value: this.state.input,
-        response: responseMessage
-      })
+      guesses[this.state.currentIndex].response = responseMessage
+      if (responseMessage === 'YOU WON!') {
+        var numAttempts = this.state.currentIndex + 1
+        window.location.reload()
+        window.alert(`CONGRATULATIONS!!! YOU FOUND IT IN ${numAttempts} ATTEMPTS`)
+      } else {
+        guesses.push({
+          value: '',
+          response: ''
+        })
+      }
       this.setState({
-        value: this.state.input,
-        response: responseMessage,
-        guesses: guesses
+        guesses: guesses,
+        input: '',
+        currentIndex: this.state.currentIndex+1
       })
-      browserHistory.push('/games')
     } else {
       this.setState({ input: '' })
       window.alert(isValid[1])
     }
   }
   render() {
-    console.log('games state', this.state)
+    console.log('games props', this.props)
     const guesses = this.state.guesses
     return (
   <div>
