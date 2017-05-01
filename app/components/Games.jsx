@@ -32,9 +32,10 @@ class Games extends React.Component {
   handleSubmit(e) {
     e ? e.preventDefault() : null
     var isValid = isValidGuess(this.state.input)
+    var guesses
     if (isValid[0]) {
       var responseMessage =response(this.state.input, this.props.game.secret)
-      var guesses = this.state.guesses
+      guesses = this.state.guesses
       guesses[this.state.currentIndex].response = responseMessage
       if (responseMessage === 'YOU WON!') {
         var numAttempts = this.state.currentIndex + 1
@@ -52,7 +53,9 @@ class Games extends React.Component {
         currentIndex: this.state.currentIndex+1
       })
     } else {
-      this.setState({ input: '' })
+      guesses = this.state.guesses
+      guesses[this.state.currentIndex].value = ''
+      this.setState({ input: '', guesses: guesses })
       window.alert(isValid[1])
     }
   }
