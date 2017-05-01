@@ -10,6 +10,7 @@ const App = ({ children, user }) => (
                     <a className="navbar-brand" href="/">Mastermind</a>
                     <ul className="nav navbar-nav navbar-left">
                         <li><a href="/games">Games</a></li>
+                        <li><a href="/rules">Game Rules</a></li>
                     </ul>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

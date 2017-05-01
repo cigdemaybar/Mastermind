@@ -60,7 +60,6 @@ class Games extends React.Component {
     }
   }
   render() {
-    console.log('games props', this.props)
     const guesses = this.state.guesses
     return (
   <div>
@@ -110,13 +109,5 @@ class Games extends React.Component {
 const mapStateToProps = (state) => (state)
 
 const mapDispatchToProps = null
-
-// (dispatch) => {
-//   return {
-//     inputGuess(value, secret) {
-//       dispatch(inputGuess(value, secret))
-//     }
-//   }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games)

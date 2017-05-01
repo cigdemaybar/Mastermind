@@ -10,8 +10,8 @@ module.exports = require('express').Router()
       })
       .catch(next)
   })
-  .post('/', (req, res, next) => {
-    Guess.create(req.body, {include: [Game]})
-      .then(guess => res.status(201).json(guess))
-      .catch(next)
-  })
+  // .post('/', (req, res, next) => {
+  //   Guess.create(req.body, {include: [Game]})
+  //     .then(guess => res.status(201).json(guess))
+  //     .catch(next)
+  // })

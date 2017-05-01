@@ -2,7 +2,6 @@
 // guess argument should be already a string
 
 export const isValidGuess = (guess) => {
-  console.log('guess, called?', guess)
   var isValid = true
   var responseInvalidGuess
   if (guess.length !== 4) {
@@ -26,8 +25,6 @@ export const isValidGuess = (guess) => {
 
 // guess argument should be already a string
 export const response = (guess, target) => {
-  console.log('value, response is called?', guess)
-  console.log('secret', target)
   var responseMessage
   if (guess === target) {
     return responseMessage='YOU WON!'
