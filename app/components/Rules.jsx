@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Rules = (props) => {
-  return (
+const Rules = (props) => (
     <div>
         <div className="col-md-6">
             <h2><b>Mastermind Game Rules!</b></h2>
@@ -29,7 +28,6 @@ const Rules = (props) => {
             <p>    The computer's response will be "+1" for the correct number and correct postion and "-1" for correct number but the wrong position </p>
         </div>
       </div>
-  )
-}
+)
 
 export default Rules
